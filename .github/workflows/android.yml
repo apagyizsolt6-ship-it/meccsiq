@@ -11,19 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: "17"
+          java-version: '17'
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.32.8'
           channel: stable
+          cache: true
 
       - name: Create Flutter Project
         run: |
@@ -31,6 +33,9 @@ jobs:
             --platforms=android \
             --project-name=meccsiq \
             --org=hu.meccsiq
+
+      - name: Flutter Doctor
+        run: flutter doctor -v
 
       - name: Get Packages
         run: flutter pub get
