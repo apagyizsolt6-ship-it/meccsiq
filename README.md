@@ -1,0 +1,2 @@
+# meccsiq
+AI Football Analysis
